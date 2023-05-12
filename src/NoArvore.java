@@ -1,5 +1,10 @@
 public class NoArvore {
-    public NoArvore noEsquerdo;
-    public NoArvore noDireito;
-    public NoArvore valor;
+    public NoArvore filhoEsquerdo;
+    public NoArvore filhoDireito;
+    public long valor;
+
+    public NoArvore(long valor){
+
+    }
+
 }
