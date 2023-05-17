@@ -36,16 +36,27 @@ public class Arvore {
     }
 
 
-    public void buscar(){
-
+    public NoArvore buscar(long valor, NoArvore atual){
+        if (valor == atual.valor)
+            return atual;
+        else if (atual == null)
+            return null;
+        else if (valor < atual.valor)
+            return buscar (valor, atual.filhoEsquerdo);
+        else
+            return buscar (valor, atual.filhoDireito);
     }
 
     public void excluir(){
 
     }
 
-    public void emOrdem(){
-
+    public void emOrdem(NoArvore atual){
+        if (atual != null){
+            emOrdem(atual.filhoDireito);
+            System.out.println(atual.valor + " ");
+            emOrdem(atual.filhoDireito);
+        }
     }
 
     public void posOrdem(){
