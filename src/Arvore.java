@@ -10,6 +10,9 @@ public class Arvore {
     public void inserir(long valor){
         NoArvore novo = new NoArvore(valor);
         novo.valor = valor;
+        novo.filhoDireito = null;
+        novo.filhoEsquerdo = null;
+
         if (raiz == null){
             raiz = novo;
         }else {
@@ -17,17 +20,18 @@ public class Arvore {
             NoArvore pai;
             while (true) {
                 pai = atual;
-                if (valor < atual.valor) {
+                if (valor <= atual.valor) {
                     atual = atual.filhoEsquerdo;
                     if (atual == null) {
                         pai.filhoEsquerdo = novo;
-                        break;
+                        return;
                     }
                 }
                 else {
                     atual = atual.filhoDireito;
                     if (atual == null) {
                         pai.filhoDireito = novo;
+                        return;
                     }
                 }
 
@@ -36,15 +40,15 @@ public class Arvore {
     }
 
 
-    public NoArvore buscar(long valor, NoArvore atual){
-        if (valor == atual.valor)
-            return atual;
-        else if (atual == null)
-            return null;
-        else if (valor < atual.valor)
-            return buscar (valor, atual.filhoEsquerdo);
-        else
-            return buscar (valor, atual.filhoDireito);
+    public NoArvore buscar(long valor){
+     if (raiz == null) return null;
+     NoArvore atual = raiz;
+     while (atual.valor != valor){
+         if (valor < atual.valor) atual = atual.filhoEsquerdo;
+         else atual = atual.filhoDireito;
+         if (atual == null) return null;
+     }
+     return atual;
     }
 
     public void excluir(){
@@ -53,14 +57,36 @@ public class Arvore {
 
     public void emOrdem(NoArvore atual){
         if (atual != null){
-            emOrdem(atual.filhoDireito);
+            emOrdem(atual.filhoEsquerdo);
             System.out.println(atual.valor + " ");
             emOrdem(atual.filhoDireito);
         }
     }
 
-    public void posOrdem(){
+    public void posOrdem(NoArvore atual){
+        if (atual != null){
+            posOrdem(atual.filhoEsquerdo);
+            posOrdem(atual.filhoDireito);
+            System.out.println(atual.valor + " ");
+        }
 
+    }
+
+    public void preOrdem(NoArvore atual){
+        if (atual != null){
+            System.out.println(atual.valor + "");
+            preOrdem(atual.filhoEsquerdo);
+            preOrdem(atual.filhoDireito);
+        }
+    }
+
+    public void caminhar(){
+        System.out.println("Em Ordem: ");
+        emOrdem(raiz);
+        System.out.println("Pós Ordem: ");
+        posOrdem(raiz);
+        System.out.println("Pré Ordem: ");
+        preOrdem(raiz);
     }
 
 
