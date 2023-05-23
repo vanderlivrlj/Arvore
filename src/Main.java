@@ -12,8 +12,9 @@ public class Main  {
 
         arvore.excluir(8);
 
-        //arvore.caminhar();
         arvore.preOrdem(arvore.raiz);*/
+
+        //Path do caminho absoluto do arquivo txt. No meu caso estou utilizando Ubuntu.
         arvore.lerArquivo("/home/vanderli/Documentos/arquivo/file.txt");
     }
 
