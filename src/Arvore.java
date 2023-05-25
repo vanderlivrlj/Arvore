@@ -243,6 +243,7 @@ public class Arvore {
             br.close();
             fr.close();
         } catch (IOException e) {
+            System.out.println("O arquivo não foi lido, verifique o arquivo, o caminho e tente novamente!");
             e.printStackTrace();
         }
     }
